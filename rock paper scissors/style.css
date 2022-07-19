@@ -1,0 +1,20 @@
+* {
+ box-sizing: border-box;
+ margin: auto;
+ max-width: 100vh;
+ background-color: #214136;
+ color: #B39C7B;
+ text-align: center;
+}
+
+body {
+ padding: 1rem;
+}
+
+.playerDiv {
+ padding: 1rem;
+}
+
+.chooseDiv img {
+ width: 10vw;
+}

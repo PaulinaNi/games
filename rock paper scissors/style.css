@@ -18,3 +18,11 @@ body {
 .chooseDiv img {
  width: 10vw;
 }
+
+.computer{
+ display:none;
+}
+
+.computerChoiceImg{
+ width: 10vw;
+}

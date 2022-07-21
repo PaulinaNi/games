@@ -1,60 +1,84 @@
-// player name change code
+const playerChoiceOptions = document.querySelectorAll('.choiceOptions')
+const computerChoiceImg = document.querySelector('.computerChoiceImg')
+const resultsContainer = document.querySelector('.results')
+const winnerContainer = document.querySelector('.winner')
+const resetGameButton = document.querySelector('.resetGameButton')
 
-const playerNameInput = document.getElementById("playerName")
-const changeNameSubmitBtn = document.getElementById("changeNameSubmitBtn")
-const playerNameDisplay = document.getElementById("playerNameDisplay")
+let playerChoice
+let computerChoice
+let resultString // string to display winner
 
-changeNameSubmitBtn.addEventListener("click", (e) => {
- e.preventDefault()
- playerNameDisplay.textContent = playerNameInput.value
- playerNameInput.value = ''
-})
-
-//game code
-const rock = document.getElementById("rock")
-const paper = document.getElementById("paper")
-const scissors = document.getElementById("scissors")
-const arrayOfChoices = [rock, paper, scissors]
-
-
-for (let i = 0; i < arrayOfChoices.length; i++) {
- arrayOfChoices[i].addEventListener("click", () => {
-  let playerChoice
-  let computerChoice
-
-  //input player choice
-  playerChoice = arrayOfChoices[i].id
-
-  // hide other option, so only choosen option will be shown
-  for (let y = 0; y < arrayOfChoices.length; y++) {
-   if (y !== i) {
-    arrayOfChoices[y].style.display = "none"
-   }
-  }
-
-  //randomise computer option
-  const randomNum = Math.ceil(Math.random() * 3)
-  if (randomNum === 1) { computerChoice = "rock" }
-  else if (randomNum === 2) { computerChoice = "paper" }
-  else if (randomNum === 3) { computerChoice = "scissors" }
-
-  //add img of computer choice
-  const computerDiv = document.querySelector(".computer")
-  computerDiv.style.display = "block"
-  const computerChoiceImg = document.querySelector(".computerChoiceImg")
-  if(computerChoice = "rock"){
-   computerChoiceImg.src = "/images/rock.svg"
-  } else if(computerChoice = "paper"){
-   computerChoiceImg.src = "/images/paper.svg"
-  }
-  else if(computerChoice = "scissors"){
-   computerChoiceImg.src = "/images/scissors.svg"
-  }
-
-  //display winner
-
-  
-  console.log(playerChoice)
-  console.log(computerChoice)
- })
+function hiddeOtherPlayerChoiceOptions(id) {
+  playerChoiceOptions.forEach(img => {
+    if (img.id !== id) {
+      img.style.display = 'none'
+    }
+  })
 }
+
+function rendomiseComputerChoice() {
+  const randomNum = Math.ceil(Math.random() * playerChoiceOptions.length)
+  console.log(randomNum)
+  switch (randomNum) {
+    case 1:
+      computerChoice = 'rock'
+      break;
+    case 2:
+      computerChoice = 'paper'
+      break;
+    case 3:
+      computerChoice = 'scissors'
+      break;
+  }
+}
+
+function displayComputerChoice(id) {
+  computerChoiceImg.style.display = 'block'
+  computerChoiceImg.src = `/images/${id}.svg`
+}
+
+function getWinner() {
+  switch (playerChoice + computerChoice) {
+    case 'rockrock':
+    case 'paperpaper':
+    case 'scissorsscissors':
+      resultString = "It's a draw"
+      break
+    case 'rockscissors':
+    case 'paperrock':
+    case 'scissorspaper':
+      resultString = "Player is the winner!"
+      break
+    case 'rockpaper':
+    case 'paperscissors':
+    case 'scissorsrock':
+      resultString = "Computer is the winner!"
+      break
+  }
+}
+
+function showWinner() {
+  resultsContainer.style.display = 'block'
+  winnerContainer.textContent = resultString
+}
+
+function game(id) {
+  playerChoice = id
+  hiddeOtherPlayerChoiceOptions(id)
+  rendomiseComputerChoice()
+  displayComputerChoice(computerChoice)
+  getWinner()
+  showWinner()
+}
+
+playerChoiceOptions.forEach(option => option.addEventListener('click', (e) => {
+  game(e.target.id)
+}))
+
+resetGameButton.addEventListener('click', () => {
+  playerChoiceOptions.forEach(img => {
+    img.style.display = 'inline-block'
+  })
+  resultsContainer.style.display = 'none'
+  computerChoiceImg.style.display = 'none'
+})

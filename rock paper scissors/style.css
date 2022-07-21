@@ -11,18 +11,47 @@ body {
  padding: 1rem;
 }
 
+.gameSection {
+ display: flex;
+ padding-top: 2rem;
+}
+
 .playerDiv {
  padding: 1rem;
+ width: 50%;
+}
+
+.playerDiv h2 {
+ padding: 1rem;
+}
+
+.chooseDiv {
+ padding-top: 1rem;
 }
 
 .chooseDiv img {
  width: 10vw;
 }
 
-.computer{
- display:none;
+.computer {
+ width: 50%;
+ margin: 0;
+ padding: 1rem;
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
 }
 
-.computerChoiceImg{
+.computer h2 {
+ margin: 0;
+ padding: 1rem;
+}
+
+.computerChoiceImg {
+ display: none;
  width: 10vw;
+}
+
+.results {
+ display: none,
 }

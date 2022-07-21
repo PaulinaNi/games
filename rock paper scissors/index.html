@@ -11,30 +11,31 @@
 
 <body>
  <h1>Welcome, please play with me!</h1>
+
  <section class="gameSection">
   <div class="playerDiv">
-   <h2 id="playerNameDisplay">Player 1</h2>
-   <form>
-    <label for="playerName"></label>
-    <input id="playerName" type="text" placeholder="Player Name">
-    <button type="submit" id="changeNameSubmitBtn">Change Name</button>
-   </form>
+   <h2>Player</h2>
    <div class="chooseDiv">
-    Choose:
     <div>
-     <img id="rock" src="/images/rock.svg" alt="rock">
-     <img id="paper" src="/images/paper.svg" alt="paper">
-     <img id="scissors" src="/images/scissors.svg" alt="scissors">
+     <img id="rock" class="choiceOptions" src="/images/rock.svg" alt="rock">
+     <img id="paper" class="choiceOptions" src="/images/paper.svg" alt="paper">
+     <img id="scissors" class="choiceOptions" src="/images/scissors.svg" alt="scissors">
     </div>
    </div>
    </label>
   </div>
 
   <div class="computer">
-   <h2>Computer chose</h2>
+   <h2>Computer </h2>
    <img class="computerChoiceImg" src="" alt="computer choice">
   </div>
  </section>
+
+ <section class="results">
+  <h2 class="winner"></h2>
+ </section>
+
+ <button class="resetGameButton">Next game</button>
 
  <script src="/app.js"></script>
 </body>
